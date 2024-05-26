@@ -1,0 +1,17 @@
+1. Create dictionary of employee with following keys
+emp_name
+emp_salary
+emp_phone
+emp_email
+
+print the employee dictionary
+
+2. Change the employee as
+emp_name="sai"
+emp_salary="10000"
+emp_phone="1234567890"
+emp_email="abc@gmail.com"
+
+print the employee dictionary to see the changes
+
+  

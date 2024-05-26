@@ -1,0 +1,34 @@
+1. 
+Grade Calculator
+Take multiple subject names, marks obtained, total marks and calculate grade
+Take input from user to get subject information
+Enter subject1 name:
+Enter Subject1 total marks:
+Enter Subject1 obtained marks:
+
+Enter subject2 name:
+Enter Subject2 total marks:
+Enter Subject2 obtained marks:
+
+Calculate total and average and use if condition
+if average>=50 and average<=60:
+    print("D")
+elif average>=60 and average<=60:
+    print("C")
+----write for 70-80 is B, 80-90 is B+ and 90-100 is A
+2. 
+Invoice Generator
+Take 3 product names, prices and qtys and calculate subtotal of each product and then calculate grand total 
+Take input from user.
+
+Product1 name:
+Product1 price:
+Product1 Qty:
+
+Product2 name:
+Product2 price:
+Product2 Qty:
+
+Calculate subtotals of each product and grand total by adding subtotals
+
+

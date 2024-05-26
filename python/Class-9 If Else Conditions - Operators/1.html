@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      padding: 20px;
+      background-color:black;
+    }
+    body{
+        background-color:black;
+    }
+    .dashboard-links {
+      background-color: black;
+      color:white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-links ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .dashboard-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .dashboard-links ul li a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dashboard-content {
+      background-color: #f1f1f1;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-totals {
+      background-color: #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-totals p {
+      margin: 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .dashboard-item {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-item.active {
+      display: block;
+    }
+    .dashboard-totals{
+        display:flex;
+    }
+    .dashboard-totals p{
+        color:white;
+        background-color:black;
+        width:20%;
+        height:20vh;
+        
+        margin-right:20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="dashboard-links">
+      <h2>Online Dashboard</h2>
+      <ul>
+        <li><a href="#" onclick="toggleContent('orders')">Orders</a></li>
+        <li><a href="#" onclick="toggleContent('admins')">Admins</a></li>
+        <li><a href="#" onclick="toggleContent('products')">Products</a></li>
+        <li><a href="#" onclick="toggleContent('customers')">Customers</a></li>
+      </ul>
+    </div>
+    <div class="dashboard-content">
+      <div class="dashboard-totals" id="totalsData">
+        <p>Total Orders: 0</p>
+        <p>Total Admins: 0</p>
+        <p>Total Products: 0</p>
+        <p>Total Customers: 0</p>
+      </div>
+      <div class="dashboard-item" id="ordersData">
+        <h2>Orders</h2>
+        <p></p>
+      </div>
+      <div class="dashboard-item" id="adminsData">
+        <h2>Admins</h2>
+        <p></p>
+      </div>
+      <div class="dashboard-item" id="productsData">
+        <h2>Products</h2>
+        <p></p>
+      </div>
+      <div class="dashboard-item" id="customersData">
+        <h2>Customers</h2>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dummy data arrays
+    const orders = [
+      { id: 1, status: "Pending" },
+      { id: 2, status: "Shipped" },
+      { id: 3, status: "Pending" },
+      { id: 4, status: "Delivered" },
+    ];
+
+    const admins = ["John Doe", "Jane Smith", "Mike Johnson"];
+
+    const products = [
+      { id: 1, name: "Product A", price: 10 },
+      { id: 2, name: "Product B", price: 20 },
+      { id: 3, name: "Product C", price: 15 },
+    ];
+
+    const customers = ["Customer 1", "Customer 2", "Customer 3", "Customer 4"];
+
+    // Function to toggle visibility of content
+    function toggleContent(category) {
+      const contentElement = document.getElementById(`${category}Data`);
+      const isActive = contentElement.classList.contains('active');
+      resetContentVisibility();
+      if (!isActive) {
+        contentElement.classList.add('active');
+        switch (category) {
+          case 'orders':
+            showOrders();
+            break;
+          case 'admins':
+            showAdmins();
+            break;
+          case 'products':
+            showProducts();
+            break;
+          case 'customers':
+            showCustomers();
+            break;
+        }
+      }
+    }
+
+    // Function to reset content visibility
+    function resetContentVisibility() {
+      const contentElements = document.querySelectorAll('.dashboard-item');
+      contentElements.forEach(element => {
+        element.classList.remove('active');
+      });
+    }
+
+    // Functions to display data
+    function showOrders() {
+      const ordersData = orders.map(order => `Order ID: ${order.id} - Status: ${order.status}`).join('<br>');
+      document.getElementById('ordersData').querySelector('p').innerHTML = ordersData;
+      updateTotals();
+    }
+
+    function showAdmins() {
+      const adminsData = admins.join('<br>');
+      document.getElementById('adminsData').querySelector('p').innerHTML = adminsData;
+      updateTotals();
+    }
+
+    function showProducts() {
+      const productsData = products.map(product => `Product ID: ${product.id} - Name: ${product.name} - Price: $${product.price}`).join('<br>');
+      document.getElementById('productsData').querySelector('p').innerHTML = productsData;
+      updateTotals();
+    }
+
+    function showCustomers() {
+      const customersData = customers.join('<br>');
+      document.getElementById('customersData').querySelector('p').innerHTML = customersData;
+      updateTotals();
+    }
+
+    // Function to update totals
+    function updateTotals() {
+      const totalsElement = document.getElementById('totalsData');
+      totalsElement.querySelector('p:nth-child(1)').textContent = `Total Orders: ${orders.length}`;
+      totalsElement.querySelector('p:nth-child(2)').textContent = `Total Admins: ${admins.length}`;
+      totalsElement.querySelector('p:nth-child(3)').textContent = `Total Products: ${products.length}`;
+      totalsElement.querySelector('p:nth-child(4)').textContent = `Total Customers: ${customers.length}`;
+    }
+  </script>
+</body>
+</html>
